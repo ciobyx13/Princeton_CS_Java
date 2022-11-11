@@ -11,6 +11,7 @@ public class RightTriangle {
 		isTriangle = isTriangle && (2*hypotenuse*hypotenuse == sumOfSquares);
 
 		System.out.println(isTriangle);
+		
 
 	}
 
