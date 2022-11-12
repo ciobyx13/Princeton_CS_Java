@@ -1,5 +1,5 @@
 
-public class Minesweeper {
+public class Minesweeper2 {
 
 	public static void main(String[] args) {
 		int m = Integer.parseInt(args[0]);
