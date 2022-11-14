@@ -5,18 +5,19 @@ public class ShannonEntropy {
 		int m = Integer.parseInt(args[0]);
 		double H = 0;
 		int[] values = new int[m];
-		double[] pi = new double[m];
-		for (int i = 0; i < m; i++) {
+		int noOfSamples = 0;
+		while (!StdIn.isEmpty()) {
 			values[StdIn.readInt()-1] += 1;
+			noOfSamples++;
 		}
 		for (int i = 0; i < m; i++) {
 			
 			if (values[i] != 0) {
-				pi[i] = (double)(values[i]) / m;
-				H += - pi[i] * Math.log(pi[i]) / Math.log(2);
+				double pi = (double)(values[i]) / noOfSamples;
+				H += - pi * Math.log(pi) / Math.log(2);
 			}
 		}
-		StdOut.println(H);
+		StdOut.printf("%.4f", H);
 
 	}
 
