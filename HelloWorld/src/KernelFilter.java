@@ -8,9 +8,9 @@ public class KernelFilter {
     	int midPoint = kernel.length/2;
     	for (int i=0; i<picture.height(); i++) {
         	for (int j=0; j<picture.width(); j++) {
-        		int red = 0;
-        		int green = 0;
-        		int blue = 0;
+        		double red = 0.0;
+        		double green = 0.0;
+        		double blue = 0.0;
         		int iWrapped;
         		int jWrapped;
             	for (int k1=0; k1 < kernel.length; k1++) {
@@ -22,21 +22,21 @@ public class KernelFilter {
                 		if (jWrapped < 0) jWrapped += picture.width();
                 		if (jWrapped > picture.width()-1) jWrapped -= picture.width();
                 		
-                		red += kernel[k1][k2] * picture.get(iWrapped, jWrapped).getRed();
-                		green += kernel[k1][k2] * picture.get(iWrapped, jWrapped).getGreen();
-                		blue += kernel[k1][k2] * picture.get(iWrapped, jWrapped).getBlue();
+                		red += kernel[k1][k2] * picture.get(jWrapped, iWrapped).getRed();
+                		green += kernel[k1][k2] * picture.get(jWrapped, iWrapped).getGreen();
+                		blue += kernel[k1][k2] * picture.get(jWrapped, iWrapped).getBlue();
                 	}
             	}
-            	red = Math.round(red);
-            	green = Math.round(green);
-            	blue = Math.round(blue);
-            	if (red < 0) red = 0;
-            	if (red >255) red = 255;
-            	if (green < 0) green = 0;
-            	if (green >255) green = 255;
-            	if (blue < 0) blue = 0;
-            	if (blue >255) blue = 255;
-            	output.set(i, j, new Color(red, green, blue));
+            	int r = (int) Math.round(red);
+            	int g = (int) Math.round(green);
+            	int b = (int) Math.round(blue);
+            	if (r < 0) r = 0;
+            	if (r >255) r = 255;
+            	if (g < 0) g = 0;
+            	if (g >255) g = 255;
+            	if (b < 0) b = 0;
+            	if (b >255) b = 255;
+            	output.set(j,i, new Color(r, g, b));
         	}	
     	}
     	return output;
@@ -117,6 +117,7 @@ public class KernelFilter {
     // Test client (ungraded).
     public static void main(String[] args) {
 		Picture testPicture = new Picture("src\\baboon.png");
+		testPicture = new Picture("src\\Lamborghini.png");
 		testPicture.show();
 		identity(testPicture).show();
 		gaussian(testPicture).show();

@@ -6,11 +6,11 @@ public class Huntingtons {
     	int index = 0;
     	while (index < dna.length() - 3 * maxRepeats) {
     		int repeats = 0;
-    		String trinuclotide = dna.substring(index, Math.min(dna.length()-1, index+3));
+    		String trinuclotide = dna.substring(index, Math.min(dna.length(), index+3));
     		while (trinuclotide.equals("CAG")) {
     			repeats++;
     			index+=3;
-    			trinuclotide = dna.substring(index, Math.min(dna.length()-1, index+3));
+    			trinuclotide = dna.substring(index, Math.min(dna.length(), index+3));
     		}
     		if (repeats > 0) index-=2;
     		else index++;
